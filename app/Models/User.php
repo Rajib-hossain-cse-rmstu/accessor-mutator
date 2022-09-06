@@ -62,4 +62,12 @@ class User extends Authenticatable
             set: fn ($value) => strtolower($value),
         );
     }
+
+    protected function pictue(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => ucfirst($value),
+            set: fn ($value) => strtolower($value),
+        );
+    }
 }

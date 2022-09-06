@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -49,13 +50,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-// dd($data);
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'picture' => ['nullable'],
         ]);
     }
 
@@ -67,15 +68,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // dd($data);
+
+        $customerImage = null;
+
+        if(isset($data['picture'])){
+            $customerImage = uniqid('customer_' . strtotime(date('Ymdhsis')), true) . '_' . rand(1, 1000) . $data['picture']->getClientOriginalExtension();
+            $data['picture']->storeAs('/uploads', $customerImage);
+        }
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
+            'picture' => $customerImage,
         ]);
 
-        dd('hi');
+       
     }
 }
