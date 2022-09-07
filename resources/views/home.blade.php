@@ -55,6 +55,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <a href="{{route('image.download')}}" download="auth()->user()->picture">
+                <img src="{{url('/uploads/'. auth()->user()->picture)}}" alt="image">
+            </a>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <a href="{{route('image.download')}}"  title="image">
+                        <img style="width: 200px; height:200px;" src="https://cdn.pixabay.com/photo/2022/08/28/08/49/beach-7416035_960_720.jpg" alt="image" >
+                    </a>                    
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection
