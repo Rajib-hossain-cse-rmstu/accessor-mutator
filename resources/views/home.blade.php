@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="row">
+    <div class="col-md-6 col-lg-6 p-5">
+        <a class="float-start btn btn-lg btn-primary px-5" href="{{route('task.create')}}">Create Task</a>
+    </div>
+    <div class="col-md-6 col-lg-6 p-5">
+        <a class="float-end btn btn-primary btn-lg p-2 m-r-5" href="{{route('task.list')}}">List of Task</a>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
