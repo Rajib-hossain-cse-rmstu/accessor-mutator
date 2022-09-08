@@ -26,6 +26,7 @@
                     {{ __('You are logged in!') }}
 
                     How are you, {{auth()->user()->first_name}} {{auth()->user()->last_name}}
+                    {{auth()->user()->created_at->format('Y-m-d h:i:s a')}}
 
                     <table class="table table-success table-striped">
                         <thead>

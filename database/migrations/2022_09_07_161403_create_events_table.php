@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('user_id');
+            // $table->string('user_id');
             $table->string('details');
             $table->string('creator_id');
             $table->timeTz('starting_time');
             $table->timeTz('ending_time');
-            $table->dateTimeTz('starting_date');
-            $table->dateTimeTz('ending_date');
-            $table->timestamps();
+            $table->date('starting_date');
+            $table->date('ending_date');
+            $table->enum('status', ['active','inactive']);
+            $table->timestampsTz();
         });
     }
 
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('events');
     }
 };
