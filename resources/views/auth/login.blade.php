@@ -65,6 +65,17 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="row mb-0">
+                        <div class="col-md-8 offset-md-4">
+                        <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
+                        <div class="social d-flex text-center">
+                            <a href="{{ url('login/github') }}" class="btn btn-info">
+                                {{ __('Login with Github') }}
+                            </a>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
